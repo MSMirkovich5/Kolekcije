@@ -1,79 +1,79 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class EvidencijaPolaznika {
-    private static ArrayList<Polaznik> polaznici = new ArrayList<>();
+    private static HashSet<Polaznik> polaznici = new HashSet<>();
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("Dobrodošli u Evidenciju Polaznika Tečaja!");
+        System.out.println("Dobrodošli u evidenciju polaznika!");
 
         boolean run = true;
         while (run) {
             System.out.println("1. Unos novog polaznika");
             System.out.println("2. Ispis svih polaznika");
-            System.out.println("3. Pretraživanje polaznika po e-mail adresi");
-            System.out.println("4. Izlaz\n");
+            System.out.println("3. Pretraživanje polaznika po email adresi");
+            System.out.println("4. Izlaz \n");
 
-            System.out.print("Odaberi opciju (1-4): ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consuming newline character
+            System.out.print("Izaberite opciju (1-4): ");
+            int opcija = scanner.nextInt();
+            scanner.nextLine();
 
-            switch (choice) {
+            switch (opcija) {
                 case 1:
                     unosNovogPolaznika();
                     break;
                 case 2:
-                    ispisiSvePolaznike();
+                    ispisSvihPolaznika();
                     break;
                 case 3:
-                    pretraziPolaznikaPoEmailu();
+                    pretrazivanjePolaznikaPoEmailAdresi();
                     break;
                 case 4:
                     run = false;
                     System.out.println("Hvala što ste koristili program. Doviđenja!");
                     break;
                 default:
-                    System.out.println("Nepostojeća opcija. Molimo odaberite ponovno.");
+                    System.out.println("Nepostojeća opcija! \n");
             }
         }
     }
 
     private static void unosNovogPolaznika() {
-        System.out.print("Unesite ime polaznika: ");
+        System.out.print("Upišite ime polaznika: ");
         String ime = scanner.nextLine();
-
-        System.out.print("Unesite prezime polaznika: ");
+        System.out.print("Upišite prezime polaznika: ");
         String prezime = scanner.nextLine();
-
-        System.out.print("Unesite e-mail adresu polaznika: ");
+        System.out.print("Upišite email polaznika: ");
         String email = scanner.nextLine();
 
         Polaznik noviPolaznik = new Polaznik(ime, prezime, email);
         polaznici.add(noviPolaznik);
-
-        System.out.println("Polaznik " + ime + " " + prezime + " uspješno dodan!\n");
+        System.out.println("Uspiješno dodan: " + ime + " " + prezime + "\n");
     }
 
-    private static void ispisiSvePolaznike() {
-        System.out.println("Popis polaznika:");
-        for (int i = 0; i < polaznici.size(); i++) {
-            System.out.println((i + 1) + ". " + polaznici.get(i));
+    private static void ispisSvihPolaznika() {
+        System.out.println("Ispis svih polaznika: ");
+        int i = 1;
+        for (Polaznik p : polaznici ) {
+            System.out.println(i + ". " + p.toString());
+            i++;
         }
         System.out.println();
     }
 
-    private static void pretraziPolaznikaPoEmailu() {
-        System.out.print("Unesite e-mail adresu polaznika za pretraživanje: ");
+    private static void pretrazivanjePolaznikaPoEmailAdresi() {
+        System.out.print("Unesite email adresu polaznika: ");
         String email = scanner.nextLine();
 
-        for (Polaznik polaznik : polaznici) {
-            if (polaznik.getEmail().equals(email)) {
-                System.out.println("Polaznik s e-mail adresom " + email + " pronađen:");
-                System.out.println(polaznik + "\n");
+        for (Polaznik p : polaznici) {
+            if (p.getEmail().equals(email)) {
+                System.out.println("Polaznik pronađen!");
+                System.out.println(p.toString() + "\n");
                 return;
             }
         }
-        System.out.println("Nema polaznika s e-mail adresom " + email + ".\n");
+        System.out.println("Polaznik nije pronađen!");
     }
 }
