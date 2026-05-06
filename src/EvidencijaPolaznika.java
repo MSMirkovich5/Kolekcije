@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class EvidencijaPolaznika {
-    private static HashSet<Polaznik> polaznici = new HashSet<>();
+    private static TreeSet<Polaznik> polaznici = new TreeSet<>();
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
