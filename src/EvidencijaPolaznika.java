@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class EvidencijaPolaznika {
-    private static HashMap<String, Polaznik> polaznici = new HashMap();
+    private static TreeMap<String, Polaznik> polaznici = new TreeMap();
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
