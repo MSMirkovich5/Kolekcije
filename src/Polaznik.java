@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class Polaznik {
     private String ime;
     private String prezime;
@@ -21,6 +23,18 @@ class Polaznik {
         return email;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Polaznik)) return false;
+        Polaznik p = (Polaznik) o;
+        return email.equals(p.email); // usporedba po emailu
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email); // mora odgovarati equals
+    }
     @Override
     public String toString() {
         return "Ime: " + ime + ", Prezime: " + prezime + ", E-mail: " + email;
